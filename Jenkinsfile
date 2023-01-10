@@ -66,7 +66,10 @@ pipeline{
         
 
     }
-    post {        
+    post {
+      always  {
+        archiveArtifacts 'build/libs/**/*.jar'
+        }        
        success{
             emailext to: "akash.kumar@knoldus.com",
             subject: "Test Email Sucess",
