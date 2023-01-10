@@ -19,16 +19,16 @@ pipeline {
           parallel {
 
             stage('Test'){
-            steps {
-            sh 'mvn test'
+              steps {
+               sh 'mvn test'
+              }
             }
-            }
-               stage('Download') {
-                   steps {
-                   archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-                    junit 'build/reports/**/*.xml'
-                     }
-                    }
+             stage('Archiving') {
+              steps {
+               sh 'echo "Artifact" > test.txt'
+                archiveArtifacts artifacts: 'test.txt'
+                }
+              }
           }
         }
         stage('Package') {
