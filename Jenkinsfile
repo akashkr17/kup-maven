@@ -16,9 +16,20 @@ pipeline {
              }
         }
         stage('Test') {
+          parallel {
+
+            stage('Test'){
             steps {
             sh 'mvn test'
             }
+            }
+               stage('Download') {
+                   steps {
+                   archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+                    junit 'build/reports/**/*.xml'
+                     }
+                    }
+          }
         }
         stage('Package') {
             steps {
@@ -27,13 +38,15 @@ pipeline {
         }
         stage('Download') {
           steps {
-          sh 'echo "Artifact" > local.txt'
+          archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+          junit 'build/reports/**/*.xml'
           }
         }
     }
     post {
           always  {
-            archiveArtifacts 'local.txt'
+           archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+           junit 'build/reports/**/*.xml'
             }
            success{
                 emailext to: "akash.kumar@knoldus.com",
