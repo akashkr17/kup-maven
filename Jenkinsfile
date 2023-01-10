@@ -15,7 +15,7 @@ pipeline {
              sh 'mvn compile'
              }
         }
-        stage('Test') {
+        stage('Testin and archiving') {
           parallel {
 
             stage('Test'){
