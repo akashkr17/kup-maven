@@ -1,17 +1,70 @@
-pipeline {
-    agent { docker { image 'maven:3.8.7-eclipse-temurin-11' } }
-    stages {
-        stage('build') {
-            steps {
-                sh 'echo "Building"'
-                sh 'mvn clean package'
+
+pipeline{
+
+    agent any
+
+    tools { 
+
+        maven 'Maven'
+
+    }
+
+    stages
+
+       {
+
+            stage("clean")
+
+            {
+
+                steps{
+
+                    sh "mvn clean"
+
+                }
+
             }
-        }
-          stage('test') {
-            steps {
-                sh 'mvn test'
+
+            stage("Build")
+
+            {
+
+                steps{
+
+                    sh "mvn compile"
+
+                }
+
+                
+
             }
-        }
+
+            stage("TEST")
+
+            {
+
+                steps{
+
+                    sh "mvn test"
+
+                }
+
+            }
+
+            stage("package")
+
+            {
+
+                steps{
+
+                    sh "mvn package"
+
+                }
+
+            }
+
+        
+
     }
     post {        
        success{
@@ -26,4 +79,5 @@ pipeline {
             body: "Test Failure"
         } 
     }
+
 }
