@@ -15,7 +15,7 @@ pipeline {
              sh 'mvn compile'
              }
         }
-        stage('Testin and archiving') {
+        stage('Parrallel and archiving') {
           parallel {
 
             stage('Test'){
@@ -35,12 +35,6 @@ pipeline {
             steps {
             sh 'mvn package'
             }
-        }
-        stage('Download') {
-          steps {
-          archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-          junit 'build/reports/**/*.xml'
-          }
         }
     }
     post {
