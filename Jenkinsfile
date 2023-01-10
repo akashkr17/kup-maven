@@ -25,8 +25,8 @@ pipeline {
             }
              stage('Archiving') {
               steps {
-               sh 'echo "Artifact" > test.txt'
-                archiveArtifacts artifacts: 'test.txt'
+               sh 'echo "Artifact" > test1.txt'
+                archiveArtifacts artifacts: 'test1.txt'
                 }
               }
           }
