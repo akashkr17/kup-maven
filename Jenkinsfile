@@ -25,6 +25,11 @@ pipeline {
             sh 'mvn package'
             }
         }
+        stage('Download') {
+          steps {
+          sh 'echo "Artifact" > local.txt'
+          }
+        }
     }
     post {
           always  {
