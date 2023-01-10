@@ -33,7 +33,7 @@ pipeline {
     }
     post {
           always  {
-            archiveArtifacts 'local.txt1'
+            archiveArtifacts 'local.txt'
             }
            success{
                 emailext to: "akash.kumar@knoldus.com",
