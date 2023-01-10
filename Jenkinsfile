@@ -33,7 +33,7 @@ pipeline {
     }
     post {
           always  {
-            archiveArtifacts 'build/libs/**/*.jar'
+            archiveArtifacts 'local.txt1'
             }
            success{
                 emailext to: "akash.kumar@knoldus.com",
