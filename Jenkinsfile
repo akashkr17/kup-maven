@@ -35,6 +35,12 @@ pipeline {
             steps {
             sh 'mvn package'
             }
+
+             post {
+               success {
+                 archiveArtifacts artifacts: 'target/*.jar, target/*.war'
+                 }
+               }
         }
     }
     post {
