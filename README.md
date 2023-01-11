@@ -1,6 +1,6 @@
 # hello-spring
 
-This is a simple "Hello World!" web app using the Spring Boot java framework:
+This is a simple "Hello World!" web app using the Spring Boot java frame:
 [http://spring.io](http://spring.io).
 
 This README file will provide instructions for building and running the service locally. 
