@@ -28,8 +28,7 @@ pipeline {
             }
              stage('Archiving') {
               steps {
-               sh 'echo "Artifact" > test.txt'
-                archiveArtifacts artifacts: 'test.txt'
+                archiveArtifacts artifacts: 'target/*.jar, target/*.war'
                 }
               }
           }
