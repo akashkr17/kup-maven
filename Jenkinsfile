@@ -16,19 +16,8 @@ pipeline {
              }
         }
         stage('Parallel and archiving') {
-          parallel {
-
-            stage('Test'){
-              steps {
-               sh 'mvn test'
-              }
-            }
-             stage('Archiving') {
-              steps {
-               sh 'echo "Artifact" > test1.txt'
-                archiveArtifacts artifacts: 'test1.txt'
-                }
-              }
+          steps {
+          sh 'mvn test'
           }
         }
         stage('Package') {
