@@ -18,17 +18,17 @@ pipeline {
              sh 'mvn compile'
              }
         }
-        stage('Parallel and archiving') {
+        stage('Testing') {
           parallel {
 
-            stage('Test'){
+            stage('Test on Linux '){
               steps {
                sh 'mvn test'
               }
             }
-             stage('Archiving') {
+             stage('Testing on Window') {
               steps {
-                archiveArtifacts artifacts: 'target/*.jar, target/*.war'
+                sh 'echo "Testing on windows"'
                 }
               }
           }
@@ -40,6 +40,9 @@ pipeline {
         }
     }
     post {
+       always {
+         archiveArtifacts artifacts: 'target/*.jar, target/*.war'
+       }
            success{
                 emailext to: "akash.kumar@knoldus.com",
                 subject: "Test Email Sucess",
