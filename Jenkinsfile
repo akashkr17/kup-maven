@@ -15,7 +15,7 @@ pipeline {
              sh 'mvn compile'
              }
         }
-        stage('Parrallel and archiving') {
+        stage('Parallel and archiving') {
           parallel {
 
             stage('Test'){
@@ -38,10 +38,6 @@ pipeline {
         }
     }
     post {
-          always  {
-           archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-           junit 'build/reports/**/*.xml'
-            }
            success{
                 emailext to: "akash.kumar@knoldus.com",
                 subject: "Test Email Sucess",
