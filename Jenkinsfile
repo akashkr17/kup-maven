@@ -37,12 +37,14 @@ pipeline {
             steps {
             sh 'mvn package'
             }
+             post {
+                success {
+                  archiveArtifacts artifacts: 'target/*.jar, target/*.war'
+                }
+             }
         }
     }
     post {
-       always {
-         archiveArtifacts artifacts: 'target/*.jar, target/*.war'
-       }
            success{
                 emailext to: "akash.kumar@knoldus.com",
                 subject: "Test Email Sucess",
