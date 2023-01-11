@@ -18,6 +18,16 @@ pipeline {
              sh 'mvn compile'
              }
         }
+         stage('Package') {
+              steps {
+                 sh 'mvn package'
+                }
+                post {
+                   success {
+                      archiveArtifacts artifacts: 'target/*.jar, target/*.war'
+                      }
+                   }
+                }
         stage('Testing') {
           parallel {
 
@@ -33,16 +43,7 @@ pipeline {
               }
           }
         }
-        stage('Package') {
-            steps {
-            sh 'mvn package'
-            }
-             post {
-                success {
-                  archiveArtifacts artifacts: 'target/*.jar, target/*.war'
-                }
-             }
-        }
+
     }
     post {
            success{
